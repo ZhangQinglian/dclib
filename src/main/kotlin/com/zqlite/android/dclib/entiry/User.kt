@@ -14,15 +14,17 @@
  *    limitations under the License.
  */
 
-package com.android.zqlite.dclib.sevice
+package com.zqlite.android.dclib.entiry
+
+import com.google.gson.annotations.SerializedName
 
 /**
- * Created by scott on 2017/8/10.
+ * Created by scott on 2017/8/11.
  */
-class DiyCodeContract {
-
-    companion object Contract{
-        val kOAuthUrl : String = "https://diycode.cc/oauth/token/"
-        var kDiyCodeApi : String = "https://diycode.cc/api/v3/"
-    }
-}
+data class User
+(
+        @SerializedName("id") val id: String,
+        @SerializedName("login") val login: String,
+        @SerializedName("name") val name: String,
+        @SerializedName("avatar_url") val avatarUrl: String
+)

@@ -14,18 +14,15 @@
  *    limitations under the License.
  */
 
-package com.android.zqlite.dclib.entiry
+package com.zqlite.android.dclib.entiry
 
 import com.google.gson.annotations.SerializedName
 
 /**
- * Created by scott on 2017/8/10.
+ * Created by scott on 2017/8/11.
  */
-data class Token
+data class Ability
 (
-        @SerializedName("access_token") val accessToken: String,
-        @SerializedName("token_type") val tokenType: String,
-        @SerializedName("expires_in") val expiresIn: String,
-        @SerializedName("refresh_token") val refreshToken: String,
-        @SerializedName("created_at") val createdAt: String
+        @SerializedName("update") val update: Boolean,
+        @SerializedName("destroy") val destroy: Boolean
 )

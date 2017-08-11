@@ -2,10 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 File propFile = new File(getProjectDir(),"local.properties")
-print "----------------" + propFile.absolutePath
-java.util.Properties properties = new Properties();
+Properties properties = new Properties()
 properties.load(propFile.newDataInputStream())
-print "--------------" + properties.get("client_id")
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
@@ -51,6 +49,8 @@ dependencies {
     compile "io.reactivex.rxjava2:rxandroid:2.0.1"
 
     api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    //logly
+    compile 'com.zql.android:logly:1.2'
 }
 repositories {
     mavenCentral()
