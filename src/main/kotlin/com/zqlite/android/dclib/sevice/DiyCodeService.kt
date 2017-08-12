@@ -16,6 +16,7 @@
 
 package com.zqlite.android.dclib.sevice
 
+import com.zqlite.android.dclib.entiry.Node
 import com.zqlite.android.dclib.entiry.Token
 import com.zqlite.android.dclib.entiry.Topic
 import io.reactivex.Observable
@@ -48,6 +49,9 @@ internal interface DiyCodeService {
     @GET(DiyCodeContract.kTopic)
     fun getTopic(@Query(DiyCodeContract.TopicParams.offset) offset: Int = 0,
                  @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<Topic>>
+
+    @GET(DiyCodeContract.kNodes)
+    fun getNodes():Observable<List<Node>>
 
     companion object Factory {
         fun create(): DiyCodeService {

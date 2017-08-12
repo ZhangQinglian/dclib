@@ -44,60 +44,19 @@ class ExampleUnitTest {
                 })
     }
 
-    @Test
     fun getTopics(){
         var service : DiyCodeService = DiyCodeService.create()
         service.getTopic().subscribe({
-            val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")  //yyyy-MM-dd'T'HH:mm:ss.SSSZ
-
-                var time = "2017-08-011T12:24:06.697+08:00"
-                println("   time = " + time)
-                val date = df.parse(time)
-
-                val now = Date()
-
-                val calendarTime = Calendar.getInstance()
-                calendarTime.time = date
-
-                val caledarNow = Calendar.getInstance()
-                caledarNow.time = now
-
-                var yearTime = calendarTime.get(Calendar.YEAR)
-                var yearNow = caledarNow.get(Calendar.YEAR)
-
-                println("yearTime = " + yearTime)
-                println("yearNow = " + yearNow)
-                if(yearNow > yearTime){
-                    println("" + (yearNow - yearTime) + "年前")
-                }else{
-                    var monthTime = calendarTime.get(Calendar.MONTH)
-                    var monthNow = caledarNow.get(Calendar.MONTH)
-                    println("monthTime = " + monthTime)
-                    println("monthNow = " + monthNow)
-                    if(monthNow > monthTime){
-                        println("" + (monthNow - monthTime) + "月前")
-                    }else{
-                        var dayTime = calendarTime.get(Calendar.DATE)
-                        var dayNow = caledarNow.get(Calendar.DATE)
-                        println("dayTime = " + dayTime)
-                        println("dayNow = " + dayNow)
-                        if(dayNow>dayTime){
-                            println("" + (dayNow- dayTime) + "天前")
-                        }else{
-                            var hourTime = calendarTime.get(Calendar.HOUR)
-                            var hourNow = caledarNow.get(Calendar.HOUR)
-                            println("hourTime = " + hourTime)
-                            println("hourNow = " + hourNow)
-                            if(hourNow>hourTime){
-                                println("" + (hourNow- hourTime) + "小时前")
-                            }else{
-                                print("刚刚")
-                            }
-                        }
-                    }
-                }
-
         })
+    }
 
+    @Test
+    fun getNodes(){
+        var service : DiyCodeService = DiyCodeService.create()
+        service.getNodes().subscribe({
+            for(node in it){
+                println(node.toString())
+            }
+        })
     }
 }
