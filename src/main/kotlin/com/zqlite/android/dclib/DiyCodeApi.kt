@@ -28,11 +28,11 @@ import io.reactivex.Observable
 object DiyCodeApi {
     private val service : DiyCodeService = DiyCodeService.create()
 
-    fun loadTop(offset : Int,limit:Int) : Observable<List<Topic>>{
+    fun loadTopic(offset : Int, limit:Int) : Observable<List<Topic>>{
         return service.getTopic(offset,limit)
     }
 
-    fun loadTop(offset : Int, limit:Int, type:String=DiyCodeContract.TopicParams.typeLastActived, nodeId:Int) : Observable<List<Topic>>{
+    fun loadTopic(offset : Int, limit:Int, type:String=DiyCodeContract.TopicParams.typeLastActived, nodeId:Int) : Observable<List<Topic>>{
         return service.getTopic(type,nodeId,offset,limit)
     }
 

@@ -43,8 +43,8 @@ internal interface DiyCodeService {
     @GET(DiyCodeContract.kTopic)
     fun getTopic(@Query(DiyCodeContract.TopicParams.type) type: String,
                  @Query(DiyCodeContract.TopicParams.nodeId) nodeId: Int,
-                 @Query(DiyCodeContract.TopicParams.offset) offset: Int,
-                 @Query(DiyCodeContract.TopicParams.limit) limit: Int): Observable<List<Topic>>
+                 @Query(DiyCodeContract.TopicParams.offset) offset: Int = 0,
+                 @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<Topic>>
 
     @GET(DiyCodeContract.kTopic)
     fun getTopic(@Query(DiyCodeContract.TopicParams.offset) offset: Int = 0,
