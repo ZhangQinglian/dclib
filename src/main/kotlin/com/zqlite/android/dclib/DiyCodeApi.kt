@@ -16,7 +16,9 @@
 
 package com.zqlite.android.dclib
 
+import com.zqlite.android.dclib.entiry.Node
 import com.zqlite.android.dclib.entiry.Topic
+import com.zqlite.android.dclib.sevice.DiyCodeContract
 import com.zqlite.android.dclib.sevice.DiyCodeService
 import io.reactivex.Observable
 
@@ -28,5 +30,13 @@ object DiyCodeApi {
 
     fun loadTop(offset : Int,limit:Int) : Observable<List<Topic>>{
         return service.getTopic(offset,limit)
+    }
+
+    fun loadTop(offset : Int, limit:Int, type:String=DiyCodeContract.TopicParams.typeLastActived, nodeId:Int) : Observable<List<Topic>>{
+        return service.getTopic(type,nodeId,offset,limit)
+    }
+
+    fun loadNodes() : Observable<List<Node>>{
+        return service.getNodes()
     }
 }

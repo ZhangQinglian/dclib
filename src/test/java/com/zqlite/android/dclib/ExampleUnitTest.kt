@@ -44,9 +44,13 @@ class ExampleUnitTest {
                 })
     }
 
+    @Test
     fun getTopics(){
         var service : DiyCodeService = DiyCodeService.create()
         service.getTopic().subscribe({
+            for (t in it){
+                println(t.toString())
+            }
         })
     }
 

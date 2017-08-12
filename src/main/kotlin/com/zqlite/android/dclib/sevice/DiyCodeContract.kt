@@ -50,7 +50,7 @@ internal class DiyCodeContract {
             const val typePopular: String = "popular"
             const val typeExcellent: String = "excellent"
 
-            const val nodeId: String = "nodeId"
+            const val nodeId: String = "node_id"
             const val offset: String = "offset"
             const val limit: String = "limit"
         }

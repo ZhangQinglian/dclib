@@ -29,34 +29,43 @@ data class Topic
         @SerializedName("title") val title: String,
         @SerializedName("created_at") val createAt: String,
         @SerializedName("updated_at") val updateAt: String,
-        @SerializedName("replied_at") val repliedAt: String,
+        @SerializedName("replied_at") val repliedAt: String?,
         @SerializedName("replies_count") val repliesCount: Int,
         @SerializedName("node_name") val nodeName: String,
         @SerializedName("node_id") val nodeId: Int,
-        @SerializedName("last_reply_user_id") val lastReplyUserId: String,
-        @SerializedName("last_reply_user_login") val lastReplyUserLogin: String,
+        @SerializedName("last_reply_user_id") val lastReplyUserId: String?,
+        @SerializedName("last_reply_user_login") val lastReplyUserLogin: String?,
         @SerializedName("user") val user: User,
         @SerializedName("deleted") val deleted: Boolean,
         @SerializedName("excellent") val excellent: Boolean,
         @SerializedName("abilities") val abilities: Ability
 ) {
 
-
     fun getCreatedAtDes(): String {
-        var des : String = CalendarUtils.getTimeDes(createAt)
-        if(des == "刚刚"){
+        var des: String = CalendarUtils.getTimeDes(createAt)
+        if (des == "刚刚") {
             return "刚刚发布"
-        }else{
+        } else {
             return "发布于" + CalendarUtils.getTimeDes(createAt)
 
         }
     }
 
-    fun getRepliedAtDes():String{
-        return "最后由" + lastReplyUserLogin + "于" + CalendarUtils.getTimeDes(createAt) + "回复"
+    fun getRepliedAtDes(): String {
+        if(repliedAt == null) {
+            return "暂无回复"
+        }
+        return "最后由" + lastReplyUserLogin + "于" + CalendarUtils.getTimeDes(repliedAt) + "回复"
     }
 
-    fun getReplyCount():String{
+    fun getReplyCount(): String {
         return "" + repliesCount
     }
+
+    companion object Factory{
+        fun getMockTopic(): Topic {
+            return Topic("", "", "", "", "", -1, "", -1, "", "", User("", "", "", ""), false, false, Ability(false, false))
+        }
+    }
+
 }
