@@ -70,4 +70,13 @@ class ExampleUnitTest {
             println(it.toString())
         }
     }
+
+    @Test
+    fun getTopicReplies(){
+        DiyCodeApi.loadTopicReplies(595).subscribe {
+            for(node in it){
+                println(node.toString())
+            }
+        }
+    }
 }

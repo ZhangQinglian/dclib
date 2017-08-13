@@ -19,6 +19,7 @@ package com.zqlite.android.dclib
 import com.zqlite.android.dclib.entiry.Node
 import com.zqlite.android.dclib.entiry.Topic
 import com.zqlite.android.dclib.entiry.TopicDetail
+import com.zqlite.android.dclib.entiry.TopicReplies
 import com.zqlite.android.dclib.sevice.DiyCodeContract
 import com.zqlite.android.dclib.sevice.DiyCodeService
 import io.reactivex.Observable
@@ -43,5 +44,9 @@ object DiyCodeApi {
 
     fun loadTopicDetail(id:Int):Observable<TopicDetail>{
         return service.getTopicDetail(id)
+    }
+
+    fun loadTopicReplies(id:Int):Observable<List<TopicReplies>>{
+        return service.getTopicReplies(id)
     }
 }
