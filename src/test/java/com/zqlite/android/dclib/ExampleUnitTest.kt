@@ -63,4 +63,11 @@ class ExampleUnitTest {
             }
         })
     }
+
+    @Test
+    fun getTopicDetail(){
+        DiyCodeApi.loadTopicDetail(714).subscribe {
+            println(it.toString())
+        }
+    }
 }

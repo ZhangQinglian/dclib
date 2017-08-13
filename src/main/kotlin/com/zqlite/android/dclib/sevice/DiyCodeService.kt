@@ -19,6 +19,7 @@ package com.zqlite.android.dclib.sevice
 import com.zqlite.android.dclib.entiry.Node
 import com.zqlite.android.dclib.entiry.Token
 import com.zqlite.android.dclib.entiry.Topic
+import com.zqlite.android.dclib.entiry.TopicDetail
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -52,6 +53,9 @@ internal interface DiyCodeService {
 
     @GET(DiyCodeContract.kNodes)
     fun getNodes():Observable<List<Node>>
+
+    @GET(DiyCodeContract.kTopicDetail)
+    fun getTopicDetail(@Path("id") topicId:Int):Observable<TopicDetail>
 
     companion object Factory {
         fun create(): DiyCodeService {

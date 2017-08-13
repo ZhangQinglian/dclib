@@ -36,6 +36,7 @@ internal class DiyCodeContract {
         /************************* route *************************/
         const val kTopic: String = "topics.json"
         const val kNodes:String = "nodes.json"
+        const val kTopicDetail:String = "topics/{id}"
         /************************* query params *************************/
         //topic
 
