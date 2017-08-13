@@ -17,11 +17,12 @@
 package com.zqlite.android.dclib.entiry
 
 import com.google.gson.annotations.SerializedName
+import com.zqlite.android.diycode.device.utils.CalendarUtils
 
 /**
  * Created by scott on 2017/8/13.
  */
-data class TopicReplies
+data class TopicReply
 (
         @SerializedName("id") val id : Int,
         @SerializedName("body_html") val bodyHtml:String,
@@ -32,4 +33,12 @@ data class TopicReplies
         @SerializedName("user") val user :User,
         @SerializedName("likes_count") val likesCount:Int,
         @SerializedName("abilities") val abilities : Ability
-)
+){
+    fun getSimpleDate() : String{
+        return CalendarUtils.getSimpleDate(createdAt)
+    }
+
+    fun getLikeStr():String{
+        return "$likesCount"
+    }
+}

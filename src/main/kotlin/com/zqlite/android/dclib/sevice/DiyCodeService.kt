@@ -55,7 +55,7 @@ internal interface DiyCodeService {
     fun getTopicDetail(@Path("id") topicId:Int):Observable<TopicDetail>
 
     @GET(DiyCodeContract.kTopicReplies)
-    fun getTopicReplies(@Path("id") topicId:Int):Observable<List<TopicReplies>>
+    fun getTopicReplies(@Path("id") topicId:Int):Observable<List<TopicReply>>
 
     companion object Factory {
         fun create(): DiyCodeService {
