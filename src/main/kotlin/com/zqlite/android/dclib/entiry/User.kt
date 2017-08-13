@@ -27,4 +27,9 @@ data class User
         @SerializedName("login") val login: String,
         @SerializedName("name") val name: String,
         @SerializedName("avatar_url") val avatarUrl: String
-)
+){
+
+    fun getLoginString() : String{
+        return "@" + login
+    }
+}

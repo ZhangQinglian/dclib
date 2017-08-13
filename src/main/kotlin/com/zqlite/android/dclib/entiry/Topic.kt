@@ -25,7 +25,7 @@ import com.zqlite.android.diycode.device.utils.CalendarUtils
 
 data class Topic
 (
-        @SerializedName("id") val id: String,
+        @SerializedName("id") val id: Int,
         @SerializedName("title") val title: String,
         @SerializedName("created_at") val createAt: String,
         @SerializedName("updated_at") val updateAt: String,
@@ -64,7 +64,7 @@ data class Topic
 
     companion object Factory{
         fun getMockTopic(): Topic {
-            return Topic("", "", "", "", "", -1, "", -1, "", "", User("", "", "", ""), false, false, Ability(false, false))
+            return Topic(-1, "", "", "", "", -1, "", -1, "", "", User("", "", "", ""), false, false, Ability(false, false))
         }
     }
 

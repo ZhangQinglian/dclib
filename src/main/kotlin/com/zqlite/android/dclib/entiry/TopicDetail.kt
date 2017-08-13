@@ -17,6 +17,7 @@
 package com.zqlite.android.dclib.entiry
 
 import com.google.gson.annotations.SerializedName
+import com.zqlite.android.diycode.device.utils.CalendarUtils
 
 /**
  * Created by scott on 2017/8/13.
@@ -46,4 +47,21 @@ data class TopicDetail
         @SerializedName("liked") val liked: String,
         @SerializedName("favorited") val favorited: String
 
-)
+){
+
+    fun getSimpleDate() : String{
+        return CalendarUtils.getSimpleDate(createdAt)
+    }
+
+    fun getContentWithTitle():String{
+        return "### " + title + "\n"+ body
+    }
+
+    fun getHitsStr():String{
+        return "$hits"
+    }
+
+    fun getLikeStr():String{
+        return "$likeCount"
+    }
+}
