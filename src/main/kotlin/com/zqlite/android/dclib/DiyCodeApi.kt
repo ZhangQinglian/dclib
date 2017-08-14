@@ -38,7 +38,7 @@ object DiyCodeApi {
         return service.getTopic(type,nodeId,offset,limit)
     }
 
-    fun loadNodes() : Observable<List<Node>>{
+    fun loadNodes() : Observable<MutableList<Node>>{
         return service.getNodes()
     }
 

@@ -49,7 +49,7 @@ internal interface DiyCodeService {
                  @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<Topic>>
 
     @GET(DiyCodeContract.kNodes)
-    fun getNodes():Observable<List<Node>>
+    fun getNodes():Observable<MutableList<Node>>
 
     @GET(DiyCodeContract.kTopicDetail)
     fun getTopicDetail(@Path("id") topicId:Int):Observable<TopicDetail>
