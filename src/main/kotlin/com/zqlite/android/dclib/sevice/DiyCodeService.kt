@@ -17,7 +17,11 @@
 package com.zqlite.android.dclib.sevice
 
 import com.zqlite.android.dclib.entiry.*
+import com.zqlite.android.logly.Logly
 import io.reactivex.Observable
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -49,20 +53,51 @@ internal interface DiyCodeService {
                  @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<Topic>>
 
     @GET(DiyCodeContract.kNodes)
-    fun getNodes():Observable<MutableList<Node>>
+    fun getNodes(): Observable<MutableList<Node>>
 
     @GET(DiyCodeContract.kTopicDetail)
-    fun getTopicDetail(@Path("id") topicId:Int):Observable<TopicDetail>
+    fun getTopicDetail(@Path("id") topicId: Int): Observable<TopicDetail>
 
     @GET(DiyCodeContract.kTopicReplies)
-    fun getTopicReplies(@Path("id") topicId:Int):Observable<List<TopicReply>>
+    fun getTopicReplies(@Path("id") topicId: Int): Observable<List<TopicReply>>
+
+    @GET(DiyCodeContract.kUserDetails)
+    fun getUserDetail(@Path("login") loginName: String): Observable<UserDetail>
+
+    @GET(DiyCodeContract.kMe)
+    fun getMe():Observable<UserDetail>
 
     companion object Factory {
         fun create(): DiyCodeService {
+
+            var interceptor: Interceptor = object : Interceptor {
+                override fun intercept(chain: Interceptor.Chain?): Response {
+                    var originRequest = chain!!.request()
+                    if (originRequest.url().toString().contains(DiyCodeContract.kOAuthUrl)) {
+                        return chain.proceed(originRequest)
+                    }
+
+                    if (originRequest.headers()["Authorization"] != null) {
+                        return chain.proceed(originRequest)
+                    }
+
+                    var newRequest = originRequest.
+                            newBuilder().
+                            addHeader("Authorization", "Bearer " + "89e2156d98650c0779a20151a13f477b697990cbf645803ff0882aa6e5c5d63f").
+                            build()
+                    println(newRequest.headers().toString())
+                    return chain.proceed(newRequest)
+                }
+
+            }
+
+            var okHttpClient: OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
+
             val retrofit = Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl(DiyCodeContract.kDiyCodeApi)
+                    .client(okHttpClient)
                     .build()
             return retrofit.create(DiyCodeService::class.java)
         }

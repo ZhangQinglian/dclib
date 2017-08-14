@@ -38,6 +38,8 @@ internal class DiyCodeContract {
         const val kNodes:String = "nodes.json"
         const val kTopicDetail:String = "topics/{id}"
         const val kTopicReplies:String = "topics/{id}/replies.json?limit=150"
+        const val kUserDetails:String = "users/{login}"
+        const val kMe :String = "users/me.json"
         /************************* query params *************************/
         //topic
 

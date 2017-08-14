@@ -30,7 +30,9 @@ import java.util.*
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
 class ExampleUnitTest {
+    val accessToken = "89e2156d98650c0779a20151a13f477b697990cbf645803ff0882aa6e5c5d63f"
 
+    @Test
     fun loginTest() {
         var service : DiyCodeService = DiyCodeService.create()
         service.login(DiyCodeContract.kOAuthUrl,
@@ -77,6 +79,20 @@ class ExampleUnitTest {
             for(node in it){
                 println(node.toString())
             }
+        }
+    }
+
+    @Test
+    fun getUserDetails(){
+        DiyCodeApi.loadUserDetail("plusend").subscribe {
+            println(it.toString())
+        }
+    }
+
+    @Test
+    fun getMe(){
+        DiyCodeApi.loadMe().subscribe {
+            println(it)
         }
     }
 }
