@@ -27,7 +27,6 @@ object CalendarUtils {
 
     val sdf_normal : SimpleDateFormat = SimpleDateFormat("yy年MM月dd日，HH:mm", Locale.CHINA)
 
-
     fun getTimeDes(time : String) : String{
         println("   time = " + time)
         val date = sdf.parse(time)
