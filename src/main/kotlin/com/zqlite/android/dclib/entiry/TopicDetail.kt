@@ -50,7 +50,7 @@ data class TopicDetail
 ){
 
     fun getSimpleDate() : String{
-        return CalendarUtils.getSimpleDate(createdAt)
+        return CalendarUtils().getSimpleDate(createdAt)
     }
 
     fun getContentWithTitle():String{

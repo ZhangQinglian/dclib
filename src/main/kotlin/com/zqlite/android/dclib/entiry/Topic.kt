@@ -42,11 +42,11 @@ data class Topic
 ) {
 
     fun getCreatedAtDes(): String {
-        var des: String = CalendarUtils.getTimeDes(createAt)
+        var des: String = CalendarUtils().getTimeDes(createAt)
         if (des == "刚刚") {
             return "刚刚发布"
         } else {
-            return "发布于" + CalendarUtils.getTimeDes(createAt)
+            return "发布于" + CalendarUtils().getTimeDes(createAt)
 
         }
     }
@@ -55,7 +55,7 @@ data class Topic
         if(repliedAt == null) {
             return "暂无回复"
         }
-        return "最后由" + lastReplyUserLogin + "于" + CalendarUtils.getTimeDes(repliedAt) + "回复"
+        return "最后由" + lastReplyUserLogin + "于" + CalendarUtils().getTimeDes(repliedAt) + "回复"
     }
 
     fun getReplyCount(): String {

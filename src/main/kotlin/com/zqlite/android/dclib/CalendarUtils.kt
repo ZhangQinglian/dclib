@@ -22,8 +22,8 @@ import java.util.*
 /**
  * Created by scott on 2017/8/11.
  */
-object CalendarUtils {
-    val sdf : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.CHINA)
+class CalendarUtils {
+    val sdf : SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssZZZ", Locale.CHINA)
 
     val sdf_normal : SimpleDateFormat = SimpleDateFormat("yy年MM月dd日，HH:mm", Locale.CHINA)
 

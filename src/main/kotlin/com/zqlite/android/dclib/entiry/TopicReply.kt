@@ -35,7 +35,7 @@ data class TopicReply
         @SerializedName("abilities") val abilities : Ability
 ){
     fun getSimpleDate() : String{
-        return CalendarUtils.getSimpleDate(createdAt)
+        return CalendarUtils().getSimpleDate(createdAt)
     }
 
     fun getLikeStr():String{
