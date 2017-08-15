@@ -43,4 +43,9 @@ data class UserDetail
         @SerializedName("favorites_count") val favoritesCount:Int,
         @SerializedName("level") val level:String,
         @SerializedName("level_name") val level_name:String
-)
+){
+
+    fun getFollowCountDes():String{
+        return "$followersCount 位关注者"
+    }
+}
