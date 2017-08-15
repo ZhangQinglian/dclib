@@ -61,11 +61,4 @@ data class Topic
     fun getReplyCount(): String {
         return "" + repliesCount
     }
-
-    companion object Factory{
-        fun getMockTopic(): Topic {
-            return Topic(-1, "", "", "", "", -1, "", -1, "", "", User("", "", "", ""), false, false, Ability(false, false))
-        }
-    }
-
 }
