@@ -50,6 +50,9 @@ data class UserDetail
     }
 
     fun hasBis():Boolean{
-        return !bio.isEmpty()
+        if(bio != null && bio.isNotEmpty()){
+            return true
+        }
+        return false
     }
 }

@@ -97,7 +97,6 @@ internal interface DiyCodeService {
                             newBuilder().
                             addHeader("Authorization", "Bearer " +mCallback!!.getToken()).
                             build()
-                    println(newRequest.headers().toString())
                     return chain.proceed(newRequest)
                 }
 
