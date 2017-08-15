@@ -35,6 +35,7 @@ internal class DiyCodeContract {
 
         /************************* route *************************/
         const val kTopic: String = "topics.json"
+        const val kFollowTopic : String = "topics/{id}/follow.json"
         const val kNodes:String = "nodes.json"
         const val kTopicDetail:String = "topics/{id}"
         const val kTopicReplies:String = "topics/{id}/replies.json?limit=150"

@@ -48,4 +48,8 @@ data class UserDetail
     fun getFollowCountDes():String{
         return "$followersCount 位关注者"
     }
+
+    fun hasBis():Boolean{
+        return !bio.isEmpty()
+    }
 }

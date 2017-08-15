@@ -17,11 +17,11 @@
 package com.zqlite.android.dclib.sevice
 
 import com.zqlite.android.dclib.entiry.*
-import com.zqlite.android.logly.Logly
 import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
+import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,6 +31,10 @@ import retrofit2.http.*
  * Created by scott on 2017/8/10.
  */
 internal interface DiyCodeService {
+
+    interface Callback{
+        fun getToken():String?
+    }
 
     @FormUrlEncoded
     @POST()
@@ -52,6 +56,9 @@ internal interface DiyCodeService {
     fun getTopic(@Query(DiyCodeContract.TopicParams.offset) offset: Int = 0,
                  @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<Topic>>
 
+    @POST(DiyCodeContract.kFollowTopic)
+    fun followTopic(@Path("id") topicId: Int):Observable<ResponseBody>
+
     @GET(DiyCodeContract.kNodes)
     fun getNodes(): Observable<MutableList<Node>>
 
@@ -68,8 +75,9 @@ internal interface DiyCodeService {
     fun getMe():Observable<UserDetail>
 
     companion object Factory {
-        fun create(): DiyCodeService {
-
+        var mCallback : Callback? = null
+        fun create(callback:Callback): DiyCodeService {
+            mCallback = callback
             var interceptor: Interceptor = object : Interceptor {
                 override fun intercept(chain: Interceptor.Chain?): Response {
                     var originRequest = chain!!.request()
@@ -81,9 +89,13 @@ internal interface DiyCodeService {
                         return chain.proceed(originRequest)
                     }
 
+                    if(mCallback!!.getToken() == null || mCallback!!.getToken()?.length == 0){
+                        return chain.proceed(originRequest)
+                    }
+
                     var newRequest = originRequest.
                             newBuilder().
-                            addHeader("Authorization", "Bearer " + "89e2156d98650c0779a20151a13f477b697990cbf645803ff0882aa6e5c5d63f").
+                            addHeader("Authorization", "Bearer " +mCallback!!.getToken()).
                             build()
                     println(newRequest.headers().toString())
                     return chain.proceed(newRequest)

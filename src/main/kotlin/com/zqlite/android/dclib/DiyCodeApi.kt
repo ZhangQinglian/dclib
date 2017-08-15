@@ -16,16 +16,38 @@
 
 package com.zqlite.android.dclib
 
+import android.os.Environment
 import com.zqlite.android.dclib.entiry.*
 import com.zqlite.android.dclib.sevice.DiyCodeContract
 import com.zqlite.android.dclib.sevice.DiyCodeService
 import io.reactivex.Observable
+import okhttp3.Response
+import okhttp3.ResponseBody
 
 /**
  * Created by scott on 2017/8/11.
  */
-object DiyCodeApi {
-    private val service : DiyCodeService = DiyCodeService.create()
+object DiyCodeApi:DiyCodeService.Callback{
+
+    private var mCallback:Callback?=null
+
+    private val service : DiyCodeService = DiyCodeService.create(this)
+
+    interface Callback{
+        fun getToken():String?
+    }
+
+    fun init(callback:Callback){
+        mCallback = callback
+    }
+
+    override fun getToken(): String? {
+        if(mCallback == null){
+            throw RuntimeException("****************   you should init DiyCodeApi ")
+        }
+        return mCallback!!.getToken()
+    }
+
 
     fun loadTopic(offset : Int, limit:Int) : Observable<List<Topic>>{
         return service.getTopic(offset,limit)
@@ -35,6 +57,9 @@ object DiyCodeApi {
         return service.getTopic(type,nodeId,offset,limit)
     }
 
+    fun followTopic(topicId:Int):Observable<ResponseBody>{
+        return service.followTopic(topicId)
+    }
     fun loadNodes() : Observable<MutableList<Node>>{
         return service.getNodes()
     }
@@ -53,5 +78,9 @@ object DiyCodeApi {
 
     fun loadMe():Observable<UserDetail>{
         return service.getMe()
+    }
+
+    fun login(login:String,password:String) : Observable<Token>{
+        return service.login(DiyCodeContract.kOAuthUrl,"password",login,password,BuildConfig.CLIENT_ID,BuildConfig.CLIENT_SECRET)
     }
 }
