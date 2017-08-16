@@ -60,6 +60,18 @@ object DiyCodeApi:DiyCodeService.Callback{
     fun followTopic(topicId:Int):Observable<ResponseBody>{
         return service.followTopic(topicId)
     }
+
+    fun unfollowTopic(topicId:Int):Observable<ResponseBody>{
+        return service.unfollowTopic(topicId)
+    }
+
+    fun favoriteTopic(topicId:Int):Observable<ResponseBody>{
+        return service.favoriteTopic(topicId)
+    }
+
+    fun unFavoriteTopic(topicId:Int):Observable<ResponseBody>{
+        return service.unfavoriteTopic(topicId)
+    }
     fun loadNodes() : Observable<MutableList<Node>>{
         return service.getNodes()
     }
@@ -78,6 +90,14 @@ object DiyCodeApi:DiyCodeService.Callback{
 
     fun loadMe():Observable<UserDetail>{
         return service.getMe()
+    }
+
+    fun like(id:Int,type:String):Observable<ResponseBody>{
+        return service.like(id,type)
+    }
+
+    fun unlike(id:Int,type:String):Observable<ResponseBody>{
+        return service.unlike(id,type)
     }
 
     fun login(login:String,password:String) : Observable<Token>{

@@ -59,6 +59,15 @@ internal interface DiyCodeService {
     @POST(DiyCodeContract.kFollowTopic)
     fun followTopic(@Path("id") topicId: Int):Observable<ResponseBody>
 
+    @POST(DiyCodeContract.kUnFollowTopic)
+    fun unfollowTopic(@Path("id") topicId: Int):Observable<ResponseBody>
+
+    @POST(DiyCodeContract.kFavorite)
+    fun favoriteTopic(@Path("id") id: Int):Observable<ResponseBody>
+
+    @POST(DiyCodeContract.kunFavorite)
+    fun unfavoriteTopic(@Path("id") id: Int):Observable<ResponseBody>
+
     @GET(DiyCodeContract.kNodes)
     fun getNodes(): Observable<MutableList<Node>>
 
@@ -73,6 +82,14 @@ internal interface DiyCodeService {
 
     @GET(DiyCodeContract.kMe)
     fun getMe():Observable<UserDetail>
+
+    @POST(DiyCodeContract.kLikes)
+    @FormUrlEncoded
+    fun like(@Field("obj_id") id:Int,@Field("obj_type") type:String):Observable<ResponseBody>
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE" ,path = DiyCodeContract.kLikes,hasBody = true)
+    fun unlike(@Field("obj_id") id:Int,@Field("obj_type") type:String):Observable<ResponseBody>
 
     companion object Factory {
         var mCallback : Callback? = null

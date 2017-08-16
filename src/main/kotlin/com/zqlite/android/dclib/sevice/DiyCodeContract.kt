@@ -19,7 +19,7 @@ package com.zqlite.android.dclib.sevice
 /**
  * Created by scott on 2017/8/10.
  */
-internal class DiyCodeContract {
+class DiyCodeContract {
 
     companion object Contract {
         /************************* base url *************************/
@@ -34,13 +34,29 @@ internal class DiyCodeContract {
         const val kClientSecret: String = "client_secret"
 
         /************************* route *************************/
+        //获得话题
         const val kTopic: String = "topics.json"
+        //关注话题
         const val kFollowTopic : String = "topics/{id}/follow.json"
+        //取消关注话题
+        const val kUnFollowTopic : String = "topics/{id}/unfollow.json"
+        //获得话题的分类
         const val kNodes:String = "nodes.json"
+        //获得话题详情
         const val kTopicDetail:String = "topics/{id}"
+        //获得话题评论
         const val kTopicReplies:String = "topics/{id}/replies.json?limit=150"
+        //用户资料
         const val kUserDetails:String = "users/{login}"
+        //获取个人资料
         const val kMe :String = "users/me.json"
+
+        //点赞
+        const val kLikes : String = "likes.json"
+        //收藏话题
+        const val kFavorite:String = "topics/{id}/favorite.json"
+        //取消收藏
+        const val kunFavorite:String = "topics/{id}/unfavorite.json"
         /************************* query params *************************/
         //topic
 
@@ -60,5 +76,13 @@ internal class DiyCodeContract {
             const val limit: String = "limit"
         }
 
+    }
+
+    class LikeType {
+        companion object Constant{
+            const val TYPE_TOPIC = "topic"
+            const val TYPE_REPLY = "reply"
+            const val TYPE_NEWS = "news"
+        }
     }
 }

@@ -43,9 +43,9 @@ data class TopicDetail
         @SerializedName("hits") val hits: Int,
         @SerializedName("likes_count") val likeCount: Int,
         @SerializedName("suggested_at") val suggestedAt: String,
-        @SerializedName("followed") val followed: String,
-        @SerializedName("liked") val liked: String,
-        @SerializedName("favorited") val favorited: String
+        @SerializedName("followed") val followed: Boolean,
+        @SerializedName("liked") val liked: Boolean,
+        @SerializedName("favorited") val favorited: Boolean
 
 ){
 
@@ -63,5 +63,9 @@ data class TopicDetail
 
     fun getLikeStr():String{
         return "$likeCount"
+    }
+
+    fun getReplyCount():String{
+        return "$repliedCount"
     }
 }
