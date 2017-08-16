@@ -96,6 +96,17 @@ object DiyCodeApi:DiyCodeService.Callback{
         return service.like(id,type)
     }
 
+    fun followUser(loginName:String):Observable<ResponseBody>{
+        return service.followUser(loginName)
+    }
+
+    fun unfollowUser(loginName:String):Observable<ResponseBody>{
+        return service.unfollowUser(loginName)
+    }
+
+    fun getfollowing(login: String):Observable<List<User>>{
+        return service.getFollowing(login)
+    }
     fun unlike(id:Int,type:String):Observable<ResponseBody>{
         return service.unlike(id,type)
     }

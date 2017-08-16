@@ -91,6 +91,14 @@ internal interface DiyCodeService {
     @HTTP(method = "DELETE" ,path = DiyCodeContract.kLikes,hasBody = true)
     fun unlike(@Field("obj_id") id:Int,@Field("obj_type") type:String):Observable<ResponseBody>
 
+    @POST(DiyCodeContract.kFollowUser)
+    fun followUser(@Path("login") loginName: String):Observable<ResponseBody>
+
+    @POST(DiyCodeContract.kunFollowUser)
+    fun unfollowUser(@Path("login") loginName: String):Observable<ResponseBody>
+
+    @GET(DiyCodeContract.kFollowing)
+    fun getFollowing(@Path("login") loginName: String):Observable<List<User>>
     companion object Factory {
         var mCallback : Callback? = null
         fun create(callback:Callback): DiyCodeService {

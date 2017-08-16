@@ -57,6 +57,14 @@ class DiyCodeContract {
         const val kFavorite:String = "topics/{id}/favorite.json"
         //取消收藏
         const val kunFavorite:String = "topics/{id}/unfavorite.json"
+
+        //关注用户
+        const val kFollowUser:String = "users/{login}/follow.json"
+        //取消关注用户
+        const val kunFollowUser:String = "users/{login}/unfollow.json"
+
+        //关注的人
+        const val kFollowing:String = "users/{login}/following.json"
         /************************* query params *************************/
         //topic
 

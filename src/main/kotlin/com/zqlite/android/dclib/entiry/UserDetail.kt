@@ -39,7 +39,7 @@ data class UserDetail
         @SerializedName("topics_count") val topicsCount:Int,
         @SerializedName("replies_count") val repliesCount:Int,
         @SerializedName("following_count") val followingCount:Int,
-        @SerializedName("followers_count") val followersCount:Int,
+        @SerializedName("followers_count") var followersCount:Int,
         @SerializedName("favorites_count") val favoritesCount:Int,
         @SerializedName("level") val level:String,
         @SerializedName("level_name") val level_name:String
