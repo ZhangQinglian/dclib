@@ -18,10 +18,7 @@ package com.zqlite.android.dclib.sevice
 
 import com.zqlite.android.dclib.entiry.*
 import io.reactivex.Observable
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Response
-import okhttp3.ResponseBody
+import okhttp3.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -103,6 +100,10 @@ internal interface DiyCodeService {
     @POST(DiyCodeContract.kReplyTopic)
     @FormUrlEncoded
     fun replyTopic(@Path("id") id:Int,@Field("body") body: String):Observable<ResponseBody>
+
+    @Multipart
+    @POST(DiyCodeContract.kUploadImage)
+    fun uploadPhoto(@Part partList: List<MultipartBody.Part>):Observable<ResponseBody>
 
     companion object Factory {
         var mCallback : Callback? = null

@@ -21,8 +21,8 @@ import com.zqlite.android.dclib.entiry.*
 import com.zqlite.android.dclib.sevice.DiyCodeContract
 import com.zqlite.android.dclib.sevice.DiyCodeService
 import io.reactivex.Observable
-import okhttp3.Response
-import okhttp3.ResponseBody
+import okhttp3.*
+import java.io.File
 
 /**
  * Created by scott on 2017/8/11.
@@ -117,5 +117,14 @@ object DiyCodeApi:DiyCodeService.Callback{
 
     fun login(login:String,password:String) : Observable<Token>{
         return service.login(DiyCodeContract.kOAuthUrl,"password",login,password,BuildConfig.CLIENT_ID,BuildConfig.CLIENT_SECRET)
+    }
+
+    fun uploadPhoto(file: File):Observable<ResponseBody>{
+        val builder = MultipartBody.Builder()
+        builder.setType(MultipartBody.FORM)
+        val body = RequestBody.create(MediaType.parse("multipart/form-data"),file)
+        builder.addFormDataPart("file",file.name,body)
+        val parts = builder.build().parts()
+        return service.uploadPhoto(parts)
     }
 }

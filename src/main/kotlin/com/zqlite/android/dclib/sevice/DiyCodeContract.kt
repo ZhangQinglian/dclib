@@ -68,6 +68,9 @@ class DiyCodeContract {
 
         //回复话题
         const val kReplyTopic:String = "topics/{id}/replies.json"
+
+        //上传图片
+        const val kUploadImage : String = "photos.json"
         /************************* query params *************************/
         //topic
 
