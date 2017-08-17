@@ -99,6 +99,11 @@ internal interface DiyCodeService {
 
     @GET(DiyCodeContract.kFollowing)
     fun getFollowing(@Path("login") loginName: String):Observable<List<User>>
+
+    @POST(DiyCodeContract.kReplyTopic)
+    @FormUrlEncoded
+    fun replyTopic(@Path("id") id:Int,@Field("body") body: String):Observable<ResponseBody>
+
     companion object Factory {
         var mCallback : Callback? = null
         fun create(callback:Callback): DiyCodeService {

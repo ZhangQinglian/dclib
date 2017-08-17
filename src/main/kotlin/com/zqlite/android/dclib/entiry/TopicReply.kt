@@ -25,10 +25,10 @@ import com.zqlite.android.diycode.device.utils.CalendarUtils
 data class TopicReply
 (
         @SerializedName("id") val id : Int,
-        @SerializedName("body_html") val bodyHtml:String,
+        @SerializedName("body_html") var bodyHtml:String,
         @SerializedName("created_at") val createdAt:String,
         @SerializedName("updated_at") val updatedAt:String,
-        @SerializedName("deleted") val deleted:String,
+        @SerializedName("deleted") val deleted:Boolean,
         @SerializedName("topic_id") val topicId:String,
         @SerializedName("user") val user :User,
         @SerializedName("likes_count") val likesCount:Int,

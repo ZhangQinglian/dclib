@@ -65,6 +65,9 @@ class DiyCodeContract {
 
         //关注的人
         const val kFollowing:String = "users/{login}/following.json"
+
+        //回复话题
+        const val kReplyTopic:String = "topics/{id}/replies.json"
         /************************* query params *************************/
         //topic
 

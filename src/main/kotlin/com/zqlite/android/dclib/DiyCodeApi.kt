@@ -84,6 +84,10 @@ object DiyCodeApi:DiyCodeService.Callback{
         return service.getTopicReplies(id)
     }
 
+    fun replyTopic(id: Int,content:String):Observable<ResponseBody>{
+        return service.replyTopic(id,content)
+    }
+
     fun loadUserDetail(login:String):Observable<UserDetail>{
         return service.getUserDetail(login)
     }
