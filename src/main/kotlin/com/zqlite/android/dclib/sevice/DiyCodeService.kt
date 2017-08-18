@@ -29,8 +29,8 @@ import retrofit2.http.*
  */
 internal interface DiyCodeService {
 
-    interface Callback{
-        fun getToken():String?
+    interface Callback {
+        fun getToken(): String?
     }
 
     @FormUrlEncoded
@@ -54,16 +54,16 @@ internal interface DiyCodeService {
                  @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<Topic>>
 
     @POST(DiyCodeContract.kFollowTopic)
-    fun followTopic(@Path("id") topicId: Int):Observable<ResponseBody>
+    fun followTopic(@Path("id") topicId: Int): Observable<ResponseBody>
 
     @POST(DiyCodeContract.kUnFollowTopic)
-    fun unfollowTopic(@Path("id") topicId: Int):Observable<ResponseBody>
+    fun unfollowTopic(@Path("id") topicId: Int): Observable<ResponseBody>
 
     @POST(DiyCodeContract.kFavorite)
-    fun favoriteTopic(@Path("id") id: Int):Observable<ResponseBody>
+    fun favoriteTopic(@Path("id") id: Int): Observable<ResponseBody>
 
     @POST(DiyCodeContract.kunFavorite)
-    fun unfavoriteTopic(@Path("id") id: Int):Observable<ResponseBody>
+    fun unfavoriteTopic(@Path("id") id: Int): Observable<ResponseBody>
 
     @GET(DiyCodeContract.kNodes)
     fun getNodes(): Observable<MutableList<Node>>
@@ -78,36 +78,41 @@ internal interface DiyCodeService {
     fun getUserDetail(@Path("login") loginName: String): Observable<UserDetail>
 
     @GET(DiyCodeContract.kMe)
-    fun getMe():Observable<UserDetail>
+    fun getMe(): Observable<UserDetail>
 
     @POST(DiyCodeContract.kLikes)
     @FormUrlEncoded
-    fun like(@Field("obj_id") id:Int,@Field("obj_type") type:String):Observable<ResponseBody>
+    fun like(@Field("obj_id") id: Int, @Field("obj_type") type: String): Observable<ResponseBody>
 
     @FormUrlEncoded
-    @HTTP(method = "DELETE" ,path = DiyCodeContract.kLikes,hasBody = true)
-    fun unlike(@Field("obj_id") id:Int,@Field("obj_type") type:String):Observable<ResponseBody>
+    @HTTP(method = "DELETE", path = DiyCodeContract.kLikes, hasBody = true)
+    fun unlike(@Field("obj_id") id: Int, @Field("obj_type") type: String): Observable<ResponseBody>
 
     @POST(DiyCodeContract.kFollowUser)
-    fun followUser(@Path("login") loginName: String):Observable<ResponseBody>
+    fun followUser(@Path("login") loginName: String): Observable<ResponseBody>
 
     @POST(DiyCodeContract.kunFollowUser)
-    fun unfollowUser(@Path("login") loginName: String):Observable<ResponseBody>
+    fun unfollowUser(@Path("login") loginName: String): Observable<ResponseBody>
 
     @GET(DiyCodeContract.kFollowing)
-    fun getFollowing(@Path("login") loginName: String):Observable<List<User>>
+    fun getFollowing(@Path("login") loginName: String): Observable<List<User>>
 
     @POST(DiyCodeContract.kReplyTopic)
     @FormUrlEncoded
-    fun replyTopic(@Path("id") id:Int,@Field("body") body: String):Observable<ResponseBody>
+    fun replyTopic(@Path("id") id: Int, @Field("body") body: String): Observable<ResponseBody>
 
     @Multipart
     @POST(DiyCodeContract.kUploadImage)
-    fun uploadPhoto(@Part partList: List<MultipartBody.Part>):Observable<ResponseBody>
+    fun uploadPhoto(@Part partList: List<MultipartBody.Part>): Observable<ResponseBody>
+
+    @GET(DiyCodeContract.kUserTopics)
+    fun getUserTopics(@Path("login") loginName: String,
+                      @Query(DiyCodeContract.TopicParams.offset) offset: Int = 0,
+                      @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<Topic>>
 
     companion object Factory {
-        var mCallback : Callback? = null
-        fun create(callback:Callback): DiyCodeService {
+        var mCallback: Callback? = null
+        fun create(callback: Callback): DiyCodeService {
             mCallback = callback
             var interceptor: Interceptor = object : Interceptor {
                 override fun intercept(chain: Interceptor.Chain?): Response {
@@ -120,13 +125,13 @@ internal interface DiyCodeService {
                         return chain.proceed(originRequest)
                     }
 
-                    if(mCallback!!.getToken() == null || mCallback!!.getToken()?.length == 0){
+                    if (mCallback!!.getToken() == null || mCallback!!.getToken()?.length == 0) {
                         return chain.proceed(originRequest)
                     }
 
                     var newRequest = originRequest.
                             newBuilder().
-                            addHeader("Authorization", "Bearer " +mCallback!!.getToken()).
+                            addHeader("Authorization", "Bearer " + mCallback!!.getToken()).
                             build()
                     return chain.proceed(newRequest)
                 }

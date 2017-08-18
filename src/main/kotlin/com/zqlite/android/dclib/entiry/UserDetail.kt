@@ -55,4 +55,24 @@ data class UserDetail
         }
         return false
     }
+
+    fun getFavoriteDes():String{
+        return "$favoritesCount"
+    }
+
+    fun getFollowingCountDes():String{
+        return "$followingCount"
+    }
+
+    fun getFollowerCountDes():String{
+        return "$followersCount"
+    }
+
+    fun getTopicCountDes():String{
+        return "$topicsCount"
+    }
+
+    fun getLoginDes():String{
+        return "@$login"
+    }
 }

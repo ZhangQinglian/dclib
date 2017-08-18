@@ -88,6 +88,10 @@ object DiyCodeApi:DiyCodeService.Callback{
         return service.replyTopic(id,content)
     }
 
+    fun loadUserTopics(login: String,offset: Int,limit: Int):Observable<List<Topic>>{
+        return service.getUserTopics(login,offset,limit)
+    }
+
     fun loadUserDetail(login:String):Observable<UserDetail>{
         return service.getUserDetail(login)
     }

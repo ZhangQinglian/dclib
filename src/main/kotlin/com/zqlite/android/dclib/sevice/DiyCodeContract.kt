@@ -71,6 +71,9 @@ class DiyCodeContract {
 
         //上传图片
         const val kUploadImage : String = "photos.json"
+
+        //获取用户创建的topic列表
+        const val kUserTopics : String = "users/{login}/topics.json"
         /************************* query params *************************/
         //topic
 
