@@ -65,7 +65,8 @@ class DiyCodeContract {
 
         //关注的人
         const val kFollowing:String = "users/{login}/following.json"
-
+        //被关注的人
+        const val kFollowers:String = "users/{login}/followers.json"
         //回复话题
         const val kReplyTopic:String = "topics/{id}/replies.json"
 
@@ -74,6 +75,10 @@ class DiyCodeContract {
 
         //获取用户创建的topic列表
         const val kUserTopics : String = "users/{login}/topics.json"
+
+        //获得用户收藏的话题列表
+        const val kUserFavoriteTopics : String = "users/{login}/favorites.json"
+
         /************************* query params *************************/
         //topic
 

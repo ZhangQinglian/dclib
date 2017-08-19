@@ -112,8 +112,14 @@ object DiyCodeApi:DiyCodeService.Callback{
         return service.unfollowUser(loginName)
     }
 
-    fun getfollowing(login: String):Observable<List<User>>{
-        return service.getFollowing(login)
+    fun getfollowing(login: String,offset:Int,limit: Int):Observable<List<User>>{
+        return service.getFollowing(login,offset,limit)
+    }
+    fun getfollower(login: String,offset:Int,limit: Int):Observable<List<User>>{
+        return service.getFollowers(login,offset,limit)
+    }
+    fun getFavoriteTopics(login: String,offset: Int,limit: Int):Observable<List<Topic>>{
+        return service.getUserFavoriteTopics(login,offset,limit)
     }
     fun unlike(id:Int,type:String):Observable<ResponseBody>{
         return service.unlike(id,type)

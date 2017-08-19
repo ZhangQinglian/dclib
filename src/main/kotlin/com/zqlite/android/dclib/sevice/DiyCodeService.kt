@@ -95,8 +95,13 @@ internal interface DiyCodeService {
     fun unfollowUser(@Path("login") loginName: String): Observable<ResponseBody>
 
     @GET(DiyCodeContract.kFollowing)
-    fun getFollowing(@Path("login") loginName: String): Observable<List<User>>
-
+    fun getFollowing(@Path("login") loginName: String,
+                     @Query(DiyCodeContract.TopicParams.offset) offset: Int = 0,
+                     @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<User>>
+    @GET(DiyCodeContract.kFollowers)
+    fun getFollowers(@Path("login") loginName: String,
+                     @Query(DiyCodeContract.TopicParams.offset) offset: Int = 0,
+                     @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<User>>
     @POST(DiyCodeContract.kReplyTopic)
     @FormUrlEncoded
     fun replyTopic(@Path("id") id: Int, @Field("body") body: String): Observable<ResponseBody>
@@ -109,6 +114,11 @@ internal interface DiyCodeService {
     fun getUserTopics(@Path("login") loginName: String,
                       @Query(DiyCodeContract.TopicParams.offset) offset: Int = 0,
                       @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<Topic>>
+
+    @GET(DiyCodeContract.kUserFavoriteTopics)
+    fun getUserFavoriteTopics(@Path("login") loginName: String,
+                              @Query(DiyCodeContract.TopicParams.offset) offset: Int = 0,
+                              @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<Topic>>
 
     companion object Factory {
         var mCallback: Callback? = null
