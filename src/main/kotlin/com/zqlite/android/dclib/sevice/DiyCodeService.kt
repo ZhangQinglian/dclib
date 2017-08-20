@@ -120,6 +120,13 @@ internal interface DiyCodeService {
                               @Query(DiyCodeContract.TopicParams.offset) offset: Int = 0,
                               @Query(DiyCodeContract.TopicParams.limit) limit: Int = 20): Observable<List<Topic>>
 
+    @POST(DiyCodeContract.kDevice)
+    @FormUrlEncoded
+    fun updateDevice(@Field("platform") flatform :String = "android",@Field("token") token:String):Observable<ResponseBody>
+
+    @GET(DiyCodeContract.kNotification)
+    fun getNotification(@Query("offset") offset:Int = 0,@Query("limit") limit: Int = 20):Observable<List<Notification>>
+
     companion object Factory {
         var mCallback: Callback? = null
         fun create(callback: Callback): DiyCodeService {

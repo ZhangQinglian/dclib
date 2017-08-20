@@ -32,7 +32,9 @@ data class TopicReply
         @SerializedName("topic_id") val topicId:String,
         @SerializedName("user") val user :User,
         @SerializedName("likes_count") val likesCount:Int,
-        @SerializedName("abilities") val abilities : Ability
+        @SerializedName("abilities") val abilities : Ability,
+        @SerializedName("body") val body:String,
+        @SerializedName("topic_title") val topicTitle:String
 ){
     fun getSimpleDate() : String{
         return CalendarUtils().getSimpleDate(createdAt)

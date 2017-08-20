@@ -79,6 +79,11 @@ class DiyCodeContract {
         //获得用户收藏的话题列表
         const val kUserFavoriteTopics : String = "users/{login}/favorites.json"
 
+        //更新设备
+        const val kDevice : String = "devices.json"
+
+        //获得通知
+        const val kNotification:String = "notifications.json"
         /************************* query params *************************/
         //topic
 

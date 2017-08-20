@@ -137,4 +137,12 @@ object DiyCodeApi:DiyCodeService.Callback{
         val parts = builder.build().parts()
         return service.uploadPhoto(parts)
     }
+
+    fun updateDevice(token:String):Observable<ResponseBody>{
+        return service.updateDevice(token = token)
+    }
+
+    fun getNotification(offset: Int,limit: Int):Observable<List<Notification>>{
+        return service.getNotification(offset,limit)
+    }
 }
