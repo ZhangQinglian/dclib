@@ -127,6 +127,10 @@ internal interface DiyCodeService {
     @GET(DiyCodeContract.kNotification)
     fun getNotification(@Query("offset") offset:Int = 0,@Query("limit") limit: Int = 20):Observable<List<Notification>>
 
+    @POST(DiyCodeContract.kNotificaiontReaded)
+    @FormUrlEncoded
+    fun readNotification(@Field("ids[]") ids:List<Int>):Observable<ResponseBody>
+
     companion object Factory {
         var mCallback: Callback? = null
         fun create(callback: Callback): DiyCodeService {

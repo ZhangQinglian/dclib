@@ -145,4 +145,8 @@ object DiyCodeApi:DiyCodeService.Callback{
     fun getNotification(offset: Int,limit: Int):Observable<List<Notification>>{
         return service.getNotification(offset,limit)
     }
+
+    fun readNotification(ids:List<Int>):Observable<ResponseBody>{
+        return service.readNotification(ids)
+    }
 }

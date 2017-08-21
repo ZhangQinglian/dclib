@@ -29,7 +29,7 @@ data class TopicReply
         @SerializedName("created_at") val createdAt:String,
         @SerializedName("updated_at") val updatedAt:String,
         @SerializedName("deleted") val deleted:Boolean,
-        @SerializedName("topic_id") val topicId:String,
+        @SerializedName("topic_id") val topicId:Int,
         @SerializedName("user") val user :User,
         @SerializedName("likes_count") val likesCount:Int,
         @SerializedName("abilities") val abilities : Ability,

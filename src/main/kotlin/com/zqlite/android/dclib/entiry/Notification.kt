@@ -29,7 +29,7 @@ data class Notification
         @SerializedName("actor") val actor:User,
         @SerializedName("mention_type") val mentionType:String,
         @SerializedName("mention") val mention:TopicReply,
-        @SerializedName("topic") val topic:String,
+        @SerializedName("topic") val topic:Topic,
         @SerializedName("reply") val reply:TopicReply,
         @SerializedName("node") val node:Node,
         @SerializedName("created_at") val createdAt:String,
