@@ -32,4 +32,12 @@ data class User
     fun getLoginString() : String{
         return "@" + login
     }
+
+    fun getShowName():String{
+        if(name != null && name.isNotEmpty()){
+            return name
+        }else{
+            return login
+        }
+    }
 }

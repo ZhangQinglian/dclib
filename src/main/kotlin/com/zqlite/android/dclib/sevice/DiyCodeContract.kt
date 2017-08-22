@@ -88,7 +88,6 @@ class DiyCodeContract {
         //将通知置为已读
         const val kNotificaiontReaded:String = "notifications/read.json"
         /************************* query params *************************/
-        //topic
 
     }
 

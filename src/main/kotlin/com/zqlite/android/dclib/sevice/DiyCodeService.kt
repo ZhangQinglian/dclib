@@ -19,6 +19,7 @@ package com.zqlite.android.dclib.sevice
 import com.zqlite.android.dclib.entiry.*
 import io.reactivex.Observable
 import okhttp3.*
+import okhttp3.internal.platform.Platform
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -131,6 +132,9 @@ internal interface DiyCodeService {
     @FormUrlEncoded
     fun readNotification(@Field("ids[]") ids:List<Int>):Observable<ResponseBody>
 
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = DiyCodeContract.kDevice, hasBody = true)
+    fun deleteDevice(@Field("platform") platform:String = "android",@Field("token") token: String):Observable<ResponseBody>
     companion object Factory {
         var mCallback: Callback? = null
         fun create(callback: Callback): DiyCodeService {

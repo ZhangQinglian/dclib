@@ -149,4 +149,8 @@ object DiyCodeApi:DiyCodeService.Callback{
     fun readNotification(ids:List<Int>):Observable<ResponseBody>{
         return service.readNotification(ids)
     }
+
+    fun deleteDevice(token:String):Observable<ResponseBody>{
+        return service.deleteDevice(token = token)
+    }
 }
