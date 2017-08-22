@@ -17,8 +17,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String","CLIENT_ID","\"" + properties.get("client_id","null") + "\""
         buildConfigField "String","CLIENT_SECRET","\"" + properties.get("client_secret","null") + "\""
-        buildConfigField "String","USERNAME","\"" + properties.get("userName","null") + "\""
-        buildConfigField "String","PASSWORD","\"" + properties.get("password","null") + "\""
     }
     buildTypes {
         release {
@@ -30,6 +28,7 @@ android {
     sourceSets{
         main.java.srcDirs += 'src/main/kotlin'
     }
+
 }
 
 dependencies {
